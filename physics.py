@@ -58,3 +58,9 @@ def LJ_Forces(r, L, rc):
             F[j, :] -= f_ij  # third law of newton
             virial += np.dot(f_ij, r_ij)  # see class on virial theorem
     return F, virial
+
+
+def verlet_step(r_old, r, dt, L, rc ):
+    F, virial = LJ_Forces(r, L, rc)
+    r_new = 2 * r + F * dt**2 - r_old
+    return r_new, virial
