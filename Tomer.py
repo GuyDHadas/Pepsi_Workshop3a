@@ -28,10 +28,11 @@ def LennardJonesPotential(r_vec, rc):
     VLJ_rc = 4 * (1 / rc ** 12 - 1 / rc ** 6)
     return 4 * (1 / r ** 12 - 1 / r ** 6) - VLJ_rc
 
-
+"""
 print(running_time(LennardJonesPotential2, 10000000, 5))
 print(running_time(LennardJonesPotential, 10000000, 5))
 
 
 print(LennardJonesPotential2(100000000, 5))
 print(LennardJonesPotential(100000000, 5))
+"""
