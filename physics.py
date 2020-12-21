@@ -60,6 +60,38 @@ def LJ_Forces(r, L, rc):
     return F, virial
 
 
+
+
+def system_energy(r_old, r, r_new, dt, L, rc):
+    """
+
+    :param r_old:
+    :param r:
+    :param r_new:
+    :param dt:
+    :param L:
+    :param rc:
+    :return:
+    """
+    T = 0
+    for i in range(len(r)):
+        r_tmp = (r_new[i] - r_old[i])/dt
+        T = T + 0.125 * np.dot(r_tmp, r_tmp)
+    V = 0
+    for i in range(len(r)):
+        for j in range(i +1, len(r)):
+            print(r[i] - r[j])
+            V = V + LennardJonesPotential(r[i]-r[j], rc)
+    return T + V
+
+
+
+
+if __name__ == '__main__':
+    x = np.array([1,2])
+    system_energy(np.array([x,x]),np.array([x,x]),np.array([x,x]),1,1,1)
+
+
 def verlet_step(r_old, r, dt, L, rc ):
     F, virial = LJ_Forces(r, L, rc)
     r_new = 2 * r + F * dt**2 - r_old
