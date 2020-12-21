@@ -28,6 +28,6 @@ def running_time2(func, x, y):
 
 
 if __name__ == '__main__':
-    x = np.array(range(10000000))
+    x = np.array(range(100000000))
     print(running_time2(LennardJonesForce, x, 100000000))
     print(running_time2(LennardJonesForceFast, x, 100000000))
