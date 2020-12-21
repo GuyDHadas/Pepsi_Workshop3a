@@ -82,7 +82,7 @@ def system_energy(r_old, r, r_new, dt, L, rc):
         for j in range(i +1, len(r)):
             print(r[i] - r[j])
             V = V + LennardJonesPotential(r[i]-r[j], rc)
-    return T + V
+    return T, V, T + V
 
 
 
