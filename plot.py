@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import physics
-import Tomer
 
 
 
@@ -15,7 +14,7 @@ def visualization(r_c):
     """
     b = np.linspace(0,2.1,10000)
     x = r_c * (0.1 **b)
-    y = np.array([Tomer.LennardJonesPotential(np.array(a), r_c) for a in x])
+    y = np.array([physics.LennardJonesPotential2(np.array(a), r_c) for a in x])
     plt.plot(x, y)
     plt.xlabel("distance")
     plt.ylabel("Potential")
