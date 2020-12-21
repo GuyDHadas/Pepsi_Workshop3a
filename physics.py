@@ -30,8 +30,8 @@ def LennardJonesForce(r_vec, rc):
     r = np.linalg.norm(r_vec)  # calculate norm (= | r_ij |)
     if r > rc:
         return 0. * r_vec
-    return 4 * (
-                12 / r ** 14 - 6 / r ** 8) * r_vec  # calculate the gradient of " LennardJonesPotential # this method calculates the total force on each particle
+    return 4 * (12 / r ** 14 - 6 / r ** 8) * r_vec
+    # calculate the gradient of " LennardJonesPotential # this method calculates the total force on each particle
 
 
 # r is a 2D array where r[i ,:] is a vector with length D ( dimensions )
