@@ -15,7 +15,7 @@ def running_time(func, x):
 # r_vec is a np. array of D elements (D is the number of dimensions ).
 # it is the vector which points from particle 1 to particle 2 (= r_ij =ri -rj)
 # this function returns the Lennard - Jones potential between the two particles
-def LennardJonesPotential2(r_vec, rc):
+def LennardJonesPotential(r_vec, rc):
     r = np.linalg.norm(r_vec)  # calculate norm (= | r_ij |)
     if r > rc:
         return 0.
@@ -28,11 +28,15 @@ def LennardJonesPotential2(r_vec, rc):
 
 # same as previous method but returns the force between the two particles
 # this is the gradient of the previous method
-def LennardJonesForce(r_vec, rc):
+def LennardJonesForceFast(r_vec, rc):
     r = np.linalg.norm(r_vec)  # calculate norm (= | r_ij |)
     if r > rc:
         return 0. * r_vec
-    return 4 * (12 / r ** 14 - 6 / r ** 8) * r_vec
+    y = 1 / r
+    y2 = y * y
+    y4 = y2 * y2
+    y8 = y4 * y4
+    return (48 * y8 * y8 * r * r - 24 * y8) * r_vec
     # calculate the gradient of " LennardJonesPotential # this method calculates the total force on each particle
 
 
