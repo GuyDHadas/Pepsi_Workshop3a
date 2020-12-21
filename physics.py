@@ -1,3 +1,16 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import time
+from math import floor
+from numba import jit
+
+
+def running_time(func, x):
+    t_start = time.time()
+    func(x)
+    t_end = time.time()
+    return t_end - t_start
+
 # r_vec is a np. array of D elements (D is the number of dimensions ).
 #it is the vector which points from particle 1 to particle 2 (= r_ij =ri -rj)
 # this function returns the Lennard - Jones potential between the two particles
