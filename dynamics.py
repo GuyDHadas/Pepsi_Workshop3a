@@ -31,9 +31,8 @@ def T0_config(dt, N, L, rc):
             EK, EP, ET = physics.system_energy(r_old, r, r_new, dt, L, rc)
             Energy.append(ET)
             Temp.append(EK)
-            Pressure.append()
-
-    return r_new
+            Pressure.append(physics.pressure_virial(virial, EK, L))
+    return r_new, Temp, Pressure, Energy, Counter
 
 
 
@@ -43,7 +42,8 @@ def convergence_condition(r_old, r, r_new, dt, L, rc, N):
 
 
 if __name__ == '__main__':
-    plot.particle_drawing(T0_config(10**(-4), 5, 10, 5))
+    plot.particle_drawing(T0_config(10**(-4), 5, 10, 5)[0])
+
 
 
 
