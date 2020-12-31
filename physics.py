@@ -95,11 +95,9 @@ def system_energy(r_old, r, r_new, dt, L, rc):
         T = T + 0.125 * np.dot(r_tmp, r_tmp)
     V = 0
     for i in range(len(r)):
-        for j in range(i +1, len(r)):
+        for j in range(i + 1, len(r)):
             V = V + LennardJonesPotential(r[i]-r[j], rc)
     return T, V, T + V
-
-
 
 
 if __name__ == '__main__':
@@ -107,7 +105,7 @@ if __name__ == '__main__':
     system_energy(np.array([x,x]),np.array([x,x]),np.array([x,x]),1,1,1)
 
 
-def verlet_step(r_old, r, dt, L, rc ):
+def verlet_step(r_old, r, dt, L, rc):
     F, virial = LJ_Forces(r, L, rc)
     r_new = 2 * r + F * dt**2 - r_old
     return r_new, virial

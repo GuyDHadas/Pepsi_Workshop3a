@@ -5,34 +5,35 @@ from random import random
 
 
 def T0_config(dt, N, L, rc):
-    x_initial_locations = []
-    y_initial_locations = []
-    z_initial_locations = []
-    x_locations = []
-    y_locations = []
-    z_locations = []
-    r_old = []
-    r = []
-    r_new = []
 
-    for i in range(N):
-        x_initial_locations.append(np.random.random(L))
-        y_initial_locations.append(np.random.random(L))
-        z_initial_locations.append(np.random.random(L))
-        x_locations.append(np.random.random(L))
-        y_locations.append(np.random.random(L))
-        z_locations.append(np.random.random(L))
-        r_old.append([x_initial_locations[i], y_initial_locations[i], z_initial_locations[i]])
-        r.append([x_locations[i], y_locations[i], z_locations[i]])
+    r_old = L * np.random.rand(N, 2)
+    r = r_old
+    r_new, virial = physics.verlet_step(r_old, r, dt, L, rc)
+    r_new = np.remainder(r_new, L)
+    for i in range(100):
+        r_old = r_new
+        r = r_new
+        r_new, virial = physics.verlet_step(r_old, r, dt, L, rc)
+        r_new = np.remainder(r_new, L)
+    while not convergence_condition(r_old, r, r_new, dt, L, rc, N):
+        r_old = r_new
+        r = r_new
+        r_new, virial = physics.verlet_step(r_old, r, dt, L, rc)
+        r_new = np.remainder(r_new, L)
+    return r_new
 
-    while True:
-        for i in range(N):
-            r_new.append(physics.verlet_step(r_old, r, dt, L, rc))
-            r_new[i] = np.remainder(L, r_new[i])
-            r_old = r_new
-            r = r_new
 
-        return r
+def convergence_condition(r_old, r, r_new, dt, L, rc, N):
+    EK, EP, ET = physics.system_energy(r_old, r, r_new, dt, L, rc)
+    print(EK / N)
+    return EK / N < 10**(-9)
+
+
+if __name__ == '__main__':
+    print(T0_config(10**(-4), 5, 10, 5))
+
+
+
 
 
 
