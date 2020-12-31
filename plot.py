@@ -10,13 +10,12 @@ def visualization(r_c):
     :param r:
     :return:
     """
-    b = np.linspace(0,2.1,10000)
-    x = r_c * (0.1 **b)
+    x = np.linspace(0.85, 10, 1000)
     y = np.array([physics.LennardJonesPotential(np.array(a), r_c) for a in x])
     plt.plot(x, y)
-    plt.xlabel("distance")
-    plt.ylabel("Potential")
-    plt.xscale('log')
+    plt.title("Visualisation - Potential")
+    plt.xlabel(r'distance $[\sigma]$')
+    plt.ylabel(r'Potential $[\epsilon]$')
     plt.grid()
     plt.show()
 
