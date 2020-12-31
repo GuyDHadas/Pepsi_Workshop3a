@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib as plt
+import physics
 from random import random
 
 
@@ -26,7 +27,7 @@ def T0_config(dt, N, L, rc):
 
     while True:
         for i in range(N):
-            r_new.append(verlet_step(r_old, r, dt, L, rc))
+            r_new.append(physics.verlet_step(r_old, r, dt, L, rc))
             r_new[i] = np.remainder(L, r_new[i])
             r_old = r_new
             r = r_new
@@ -36,5 +37,4 @@ def T0_config(dt, N, L, rc):
 
 
 
-def verlet_step(r_old, r, dt, L, rc):
-    pass
+
