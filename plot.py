@@ -3,8 +3,6 @@ import numpy as np
 import physics
 
 
-
-
 def visualization(r_c):
     """
 
@@ -23,8 +21,5 @@ def visualization(r_c):
     plt.show()
 
 
-
-
 if __name__ == '__main__':
-
     visualization(100)
