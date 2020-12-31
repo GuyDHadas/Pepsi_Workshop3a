@@ -15,11 +15,17 @@ def test_LennardJonesPotential():
 
 
 def test_partical_drawing():
-    r_new, Temperature, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
+    """r_new, Temperature, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2, 10**-3)"""
+    r_new = dynamics.T0_config(10 ** (-4), 5, 2, 5)
+
     plot.partical_drawing(r_new)
 
+test_partical_drawing()
 
-def test_Temperature():
+
+
+
+"""def test_Temperature():
     r_new, Temperature1, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
     r_new, Temperature10, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
     r_new, Temperature100, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
@@ -35,3 +41,5 @@ def test_Temperature():
     plt.ylabel("Temperature")
     plt.grid()
     plt.show()
+
+test_partical_drawing()"""
