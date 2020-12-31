@@ -18,20 +18,14 @@ def test_partical_drawing():
     """r_new, Temperature, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2, 10**-3)"""
     r_new = dynamics.T0_config(10 ** (-4), 5, 2, 5)
 
-    plot.partical_drawing(r_new)
 
-test_partical_drawing()
-
-
-
-
-"""def test_Temperature():
-    r_new, Temperature1, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
-    r_new, Temperature10, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
-    r_new, Temperature100, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
-    r_new, Temperature1000, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
-    r_new, Temperature10000, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
-    r_new, Temperature100000, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 2)
+def test_Temperature():
+    r_new, Temperature1, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 10, 5)
+    r_new, Temperature10, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 10, 5)
+    r_new, Temperature100, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 10, 5)
+    r_new, Temperature1000, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 10, 5)
+    r_new, Temperature10000, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 10, 5)
+    r_new, Temperature100000, Pressure, Energy = dynamics.T0_config(10 ** (-4), 5, 10, 5)
 
     x = np.array([1, 10, 100, 1000, 10000, 100000])
     y = np.array([Temperature1, Temperature10, Temperature100, Temperature1000, Temperature10000, Temperature100000])
@@ -42,4 +36,7 @@ test_partical_drawing()
     plt.grid()
     plt.show()
 
-test_partical_drawing()"""
+
+test_Temperature()
+
+test_partical_drawing()
