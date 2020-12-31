@@ -28,7 +28,7 @@ def LennardJonesPotential(r_vec, rc):
 
 # same as previous method but returns the force between the two particles
 # this is the gradient of the previous method
-def LennardJonesForceFast(r_vec, rc):
+def LennardJonesForce(r_vec, rc):
     r = np.linalg.norm(r_vec)  # calculate norm (= | r_ij |)
     if r > rc:
         return 0. * r_vec
@@ -37,23 +37,26 @@ def LennardJonesForceFast(r_vec, rc):
     y4 = y2 * y2
     y8 = y4 * y4
     return (48 * y8 * y8 * r * r - 24 * y8) * r_vec
-    # calculate the gradient of " LennardJonesPotential # this method calculates the total force on each particle
+    # calculate the gradient of " LennardJonesPotential
 
 
+# this method calculates the total force on each particle
 # r is a 2D array where r[i ,:] is a vector with length D ( dimensions )
 # which represents the position of the i-th particle
-# (in 2D case r[i ,0] is the x coordinate and r[i ,1] is the y coordinate of the i-th # this function returns a numpy array F of the same dimesnsions as r
+# (in 2D case r[i ,0] is the x coordinate and r[i ,1] is the y coordinate of the i-th
+# this function returns a numpy array F of the same dimensions as r
 # where F[i ,:] is a vector which represents the force that acts on the i-th particle
 # this function also returns the virial
 def LJ_Forces(r, L, rc):
     F = np.zeros_like(r)
     virial = 0
     N = r.shape[0]  # number of particles
-    # loop on all pairs of particles i, j
+    # loop on all pairs of particles i , j
     for i in range(1, N):
         for j in range(i):
             r_ij = r[i, :] - r[j, :]
-            r_ij = r_ij - L * np.rint(r_ij / L)  # see class on boundary f_ij = LennardJonesForce (r_ij , rc)
+            r_ij = r_ij - L * np.rint(r_ij / L)  # see class on boundary conditions
+            f_ij = LennardJonesForce(r_ij, rc)
             F[i, :] += f_ij
             F[j, :] -= f_ij  # third law of newton
             virial += np.dot(f_ij, r_ij)  # see class on virial theorem
