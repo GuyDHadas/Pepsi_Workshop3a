@@ -20,8 +20,7 @@ def visualization(r_c):
     plt.show()
 
 
-
-def partical_drawing(r):
+def particle_drawing(r):
     x = np.array([a[0] for a in r])
     y = np.array([a[1] for a in r])
     plt.plot(x,y,'o', color = 'black')
